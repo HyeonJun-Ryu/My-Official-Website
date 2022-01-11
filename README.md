@@ -1,7 +1,11 @@
-# myportfolio
+# My Official Website
 
 DJango 활용
+DB - MongoDB
 
-포트폴리오 사이트 제작
-1. 본인 소개
-2. 포트폴리오 간단 설명과 함께 한눈에 볼 수 있도록 전시
+기능
+* 공지사항 스크랩
+* 잡다한 기능 연구 및 구현
+
+Day1 - 개발환경 구축, 앱 생성 및 템플릿 적용
+Day2 - MongDB 연동
