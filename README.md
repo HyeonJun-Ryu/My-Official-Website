@@ -1,7 +1,6 @@
 # My Official Website
 
-DJango 활용
-DB - MongoDB
+# DJango / MongoDb
 
 기능
 * 공지사항 스크랩
