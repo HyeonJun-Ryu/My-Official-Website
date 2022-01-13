@@ -26,7 +26,11 @@ def post(request):
 
 def detail(request, boardid):
     try:
-        board = db.board.find({'boardid':boardid})
-    except board.DoesNotExist:
+        doc = db.board.find_one({'boardid': boardid})
+        #doc = {'title': "TEST TITLE"}
+    except doc.DoesNotExist:
         raise Http404("Does not exist!")
-    return render(request, 'detail.html', {'board': board})
+    return render(request, 'mainpage/detail.html', {'board': doc})
+
+def edit(request):
+    return

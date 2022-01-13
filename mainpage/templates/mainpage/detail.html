@@ -19,7 +19,7 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ board.title }} - {{ board.author }}</h5>
+            <h5 class="card-title">제목 {{ board.title }} - 작성자 {{ board.author }}</h5>
             <p class="card-text"><small class="text-muted">{{ board.created_date | date:"Y-m-d h:i" }}</small></p>
             <p class="card-text">{{ board.content }}</p>
         </div>
