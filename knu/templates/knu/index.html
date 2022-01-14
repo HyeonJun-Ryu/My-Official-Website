@@ -23,8 +23,9 @@
             <th scope="col">#</th>
             <th scope="col">제목</th>
             <th scope="col">원글작성자</th>
-            <th scope="col">작성일</th>
+            <th scope="col">원글작성일</th>
             <th scope="col">작성자</th>
+            <th scope="col">작성일</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +35,7 @@
                 <span>{{ board.boardid }}</span>
             </th>
             <td>
-                <a href="{{ board.content }}">
+                <a href="{{ board.knuurl }}">
                     <span>{{ board.title }}</span>
                 </a>
             </td>
@@ -42,10 +43,13 @@
                 <span>{{ board.knuauthor }}</span>
             </td>
             <td>
-                <span>{{ board.created_date | date:"Y-m-d h:i" }}</span>
+                <span>{{ board.knudate }}</span>
             </td>
             <td>
                 <span>{{ board.author }}</span>
+            </td>
+            <td>
+                <span>{{ board.date }}</span>
             </td>
         </tr>
         {% endfor %}
@@ -54,7 +58,7 @@
     <div class="row">
         <div class="col-auto mr-auto"></div>
         <div class="col-auto">
-
+            <a class="btn btn-primary" href="" role="button">Update</a>
         </div>
     </div>
 </div>
