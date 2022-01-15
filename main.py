@@ -81,7 +81,7 @@ while(1):
     test = urllib.request.urlopen(url)
     html = requests.get(url)
     if (test.status == 200):
-        print("URL 접근!")
+        print("URL 접근!", datetime.now())
         print("index: ", index)
         dict = getinfo(html)
 
