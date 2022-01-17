@@ -9,8 +9,7 @@ boarddb = client.MP # MP 이름의 DB에 접근
 knudb = client.MP
 
 def index(request):
-    boards = {'boards': db.board.find()}
-    return render(request, 'mainpage/index2.html', boards)
+    return render(request, 'mainpage/index2.html')
 
 def login(request):
     return render(request, 'mainpage/login.html')
