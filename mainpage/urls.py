@@ -8,6 +8,6 @@ urlpatterns = [
     path('forms', views.forms, name='forms'),
     path('register', views.register, name='register'),
     path('charts', views.charts, name='charts'),
-    path('post', views.post, name='post'),
-    path('post/<int:boardid>/', views.detail, name='detail'),
+    # path('post', views.post, name='post'),
+    # path('post/<int:boardid>/', views.detail, name='detail'),
 ]

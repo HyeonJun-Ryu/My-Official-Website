@@ -384,7 +384,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 required: true,
                 password: true,
                 minLength: 4,
-                maxLength: 8
+                maxLength: 20
             },
             zip: {
                 required: true,
