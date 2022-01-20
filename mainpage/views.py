@@ -1,22 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, Http404
-from django.urls import reverse
-from django.utils import timezone
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
 from django.contrib import auth
+from argon2 import PasswordHasher
 
 import pymongo
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
-boarddb = client.MP # MP 이름의 DB에 접근
-knudb = client.MP
+db = client.MP # MP 이름의 DB에 접근
+
 
 def index(request):
     return render(request, 'mainpage/index2.html')
 
 def tables(request):
-    boards = {'boards': knudb.knuboard.find().sort("boardid", pymongo.DESCENDING)}
+    boards = {'boards': db.knuboard.find().sort("boardid", pymongo.DESCENDING)}
     return render(request, 'mainpage/tables.html', boards)
 
 def forms(request):
@@ -26,19 +22,32 @@ def register(request):
     if request.method == "GET":
         return render(request, 'mainpage/register.html')
     elif request.method == "POST":
-        print("POST접근")
         username = request.POST.get('registerUsername')  # 딕셔너리형태
         email = request.POST.get('registerEmail')
         password = request.POST.get('registerPassword')
+        repassword = request.POST.get('registerRePassword')
         res_data = {}
-
-        print(username, "가입!\nPW: ", password, "\nemail: ", email, "\n")
+        if (password != repassword):
+            print("비밀번호 불일치!!!")
+            res_data['error'] = "비밀번호 불일치!!!!!!"
+            return render(request, 'mainpage/register.html', res_data)
+        doc = {'username': username, 'email': email, 'password': PasswordHasher().hash(password)}
+        #PasswordHasher().verify(암호화된 비밀번호, 입력받은 비밀번호)
+        db.user.insert_one(doc)
+        print(username, "가입!\nPW: ", PasswordHasher().hash(password), "\nemail: ", email, "\n")
         return render(request, 'mainpage/index2.html')
 
 
 def login(request):
-
-    return render(request, 'mainpage/login.html')
+    if request.method == "GET":
+        return render(request, 'mainpage/login.html')
+    elif request.method == "POST":
+        username = request.POST.get('loginUsername')
+        password = request.POST.get('loginPassword')
+        print(username, "\n",password)
+        dict = db.user.find({'username': username})
+        print(dict['password'])
+        return render(request, 'mainpage/login.html')
 
 def charts(request):
     return render(request, 'mainpage/charts.html')

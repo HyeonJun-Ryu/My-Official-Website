@@ -13,7 +13,7 @@ id = "knubot1"
 pw = "knubot1"
 
 
-sindex = 3674
+sindex = 3684  # 임시로 인덱스 수동 저장 중.. 추후 DB연동 등 해결 필요.
 
 
 
