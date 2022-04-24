@@ -42,11 +42,17 @@ def login(request):
     if request.method == "GET":
         return render(request, 'mainpage/login.html')
     elif request.method == "POST":
-        username = request.POST.get('loginUsername')
+        email = request.POST.get('loginUsername')
         password = request.POST.get('loginPassword')
-        print(username, "\n",password)
-        dict = db.user.find({'username': username})
+        print(email, "\n",password)
+        dict = (db.user.find({'email': email}))
+        print(dict)
+        print(PasswordHasher().hash(password))
         print(dict['password'])
+        if (PasswordHasher().hash(password) == dict.password):
+            print("로그인 성공")
+        else:
+            print("로그인 실패")
         return render(request, 'mainpage/login.html')
 
 def charts(request):
